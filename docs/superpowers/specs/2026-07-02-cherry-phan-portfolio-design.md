@@ -10,7 +10,9 @@
 
 This spec has two layers, and they are governed by opposite rules.
 
-- **The skeleton is fixed.** File types, folder nesting, the JSON-as-content pattern, the typed schema, the server-side loader, the dashboard mechanics, and the *category* of tools (Next.js / React / Tailwind / GSAP / Motion). Do not redesign these. They are proven scaffolding lifted from an existing portfolio and they work. Reproduce the structure faithfully.
+- **The skeleton is fixed.** File types, folder nesting, the JSON-as-content pattern, the typed schema, the server-side loader, the dashboard mechanics, and the *category* of tools (Next.js / React / Tailwind / GSAP / Motion). Do not redesign these. They are a proven *pattern* observed in an existing portfolio; **reproduce the pattern by writing fresh files inside Cherry's own repo.** Reproduce the structure faithfully.
+
+> **Nothing is "shared" across projects.** This is a **standalone, self-contained repository**. Every file is *written into or copied into Cherry's own folder* — no file is imported from, symlinked to, or referenced in another project. Where this spec says a pattern comes from an existing portfolio, that means **take inspiration and re-implement it here**, freshly, as Cherry's own code. There is exactly one codebase and it is hers.
 
 - **Everything a visitor sees or touches is yours to invent.** Visual language, layout, composition, typography, color application, motion personality, micro-interactions, the feel of navigating between pages — **go be innovative and experimental here.** You (Fable 5) are the most capable and well-studied design model available; this spec deliberately does *not* pin pixels, because prescribing them would waste you. Take the identity system defined in §4 as a *starting palette*, not a cage. Push it. Surprise us. Avoid generic, templated, "AI-default" aesthetics at all costs — this is the portfolio of a designer with genuinely strong visual skills, and it must look like it.
 
@@ -36,13 +38,13 @@ In short: **treat this spec as a smart colleague's first draft that you've been 
 
 ## 1. What this is
 
-A personal portfolio site for **Cherry Phan**, UX design student at SCAD. It reuses the *technical scaffolding* of an existing portfolio (Pramit's) — the data structure, folder layout, code patterns, animation approach, and a content-editing dashboard — while presenting a **completely different** visual language, page flow, and interaction feel.
+A personal portfolio site for **Cherry Phan**, UX design student at SCAD. It **takes inspiration from the *technical patterns*** of an existing portfolio (Pramit's) — the data structure, folder layout, code patterns, animation approach, and a content-editing dashboard — and **re-implements them freshly inside Cherry's own standalone repo**, while presenting a **completely different** visual language, page flow, and interaction feel.
 
-Nothing a visitor experiences should resemble the source portfolio. Only the invisible plumbing is shared.
+Nothing a visitor experiences should resemble the source portfolio. And nothing is technically shared with it either: this is one self-contained codebase, entirely Cherry's.
 
-### The shared/different line
+### The pattern-vs-experience line
 
-**Shared (invisible plumbing):** file types, folder nesting, JSON-as-content + typed schema + server loader, the dashboard mechanism (auth → edit JSON → GitHub commit → redeploy), the GSAP/Motion token-driven animation approach.
+**Patterns to re-implement (invisible plumbing, written fresh as her own files):** file types, folder nesting, JSON-as-content + typed schema + server loader, the dashboard mechanism (auth → edit JSON → GitHub commit → redeploy), the GSAP/Motion token-driven animation approach. These are *conventions to copy*, not files to link.
 
 **Different (everything experienced):** visual language, per-page layout & composition, motion personality, copy & narrative tone.
 
@@ -67,12 +69,27 @@ Dependencies to include: `next`, `react`, `react-dom`, `gsap`, `motion`, `marked
 
 ## 3. Personality dial
 
-**75% polished-editorial / 25% loud-playful.**
+**60% polished-editorial / 40% playful.** (Deliberately *not* buttoned-up — the earlier draft read too editorial. Cherry is whimsical and warm; the site should feel that way while still looking like a designer who knows restraint.)
 
-- The **75%**: refined editorial base — considered typography, generous whitespace, strong grid, restraint. This is the canvas and the default.
-- The **25%**: whimsical, childlike, playful surprises — expressed through motion, motifs, texture, and micro-interactions, *not* through chunky/juvenile type or clutter.
+- The **60%**: a considered editorial base — good typography, real whitespace, a grid you can feel. This keeps it credible and mature. It's the frame, not the whole picture.
+- The **40%**: whimsy, warmth, and play — expressed generously through **gradients** (she loves them — see §4a references), ASCII/halftone motifs, character/illustration touches, motion, texture, and micro-interactions. This is a bigger, more present 40% than a typical portfolio — lean into it. Playful ≠ juvenile: it's clever, warm, and personal, never sloppy or childish-looking.
 
-Cherry's own work reads as *sophisticated whimsy*: elegant italic serif signatures, soft pink→peach gradients, ASCII-halftone floral textures, and Figma selection-handle/frame motifs used as decoration. Channel that. The playfulness is a designer being clever and warm, never a site that looks unserious. If a choice risks reading "juvenile," pull it back toward the 75%.
+Cherry's own work reads as *sophisticated whimsy*: elegant italic serif signatures, lush multi-stop gradients, ASCII/halftone textures, character design (the Wally mascot), and Figma selection-handle/frame motifs used as decoration. Channel that. If a choice risks reading "juvenile," refine the craft — don't necessarily remove the play.
+
+---
+
+## 3a. Persona — design *from her*, not from a template
+
+**Before choosing anything visual, hold this person in your head and let the site fall out of it.** Every design decision should be answerable with "because this is *her*." This persona is synthesized from her real work and words (§10) — treat it as the source of truth for tone, motion, color, and copy.
+
+> **Cherry Phan — "the designer who tells you to slow down."**
+> A first-year SCAD design student, Vietnamese, who designs with unusual emotional intelligence for someone so early in her journey. Her recurring subject is **time and memory** — slowing down (Mugmood), reflecting and revisiting (Everloop), reclaiming small in-between moments (Tessera). Her tagline is literally *"Design with empathy,"* and it isn't decoration: her projects are quiet arguments *against* efficiency and hustle, *for* warmth, ritual, and presence.
+>
+> **Where she comes from shows up in the work:** a grandpa waiting for coffee to brew on a porch in Vietnam; Sài Gòn coffee talk; the unhurried pace of Đà Nẵng. She was a Yearbook Design Lead and did theatre — she's a **storyteller and editorial thinker** first, who happens to build product. She also designs **characters** (the Wally mascot), so there's an illustrator's warmth in her, not just a systems-designer's rigor.
+>
+> **Her aesthetic instincts:** lush **gradients** (amber, pink, blue→lilac), soft light, ASCII/halftone texture, playful "designer-native" motifs (Figma frames/handles), gentle stars and small delights. Feminine but not saccharine. Whimsical but intentional. Warm, calm, a little dreamy — never cold, corporate, or minimal-for-minimal's-sake.
+
+**How to use the persona:** when picking a transition, a color move, a piece of copy, or a layout — ask *"would the person above do this?"* A brisk, snappy, hyper-efficient interaction is **wrong for her** even if it's "good UX" in the abstract; her site should feel like it, too, is inviting you to slow down and notice. Motion should breathe. Copy should sound like a warm, thoughtful friend, not a brand. Gradients and soft light should carry emotion. Let the persona resolve ties.
 
 ---
 
@@ -81,28 +98,89 @@ Cherry's own work reads as *sophisticated whimsy*: elegant italic serif signatur
 All theming routes through **CSS custom properties in `app/globals.css`**, so the skin is swappable without touching components. This is the seam that makes "same skeleton, different skin" work. Define real tokens; reference them everywhere.
 
 ### Color
-- **Base:** warm cream / paper background, ink-charcoal text. Editorial and airy — *not* a pink-drenched site.
-- **Signature accent:** pink → peach, used as the recurring accent and for gradient moments. **Present, not dominant** — Cherry explicitly does not want pink to be her whole identity.
-- Provide a coherent token set: `--color-bg`, `--color-surface`, `--color-ink`, `--color-body`, `--color-muted`, `--color-accent`, `--color-accent-2` (peach), plus gradient stops. Ensure text contrast meets **WCAG AA** for body copy.
+- **Base:** warm cream / paper / off-white grounds, ink-charcoal text. Editorial, airy, textural — *not* a pink-drenched site.
+- **Palette character (per §4a):** muted, sophisticated, grown-up — cream, sage/olive, terracotta/oxblood, dusty rose, cobalt/cornflower — accented with **occasional punchy pops** (fire-engine red, chartreuse/lime, cobalt). Pink is *one* voice, not the identity.
+- **Signature accent:** pink → peach remains a recurring accent + gradient moment (it's genuinely hers — Aurora, Everloop), but it shares the stage with the warmer/deeper tones above. **Present, not dominant.**
+- Provide a coherent token set: `--color-bg`, `--color-surface`, `--color-ink`, `--color-body`, `--color-muted`, `--color-accent`, `--color-accent-2`, plus per-project accent + gradient stops (driven by the content `accent` field). Ensure text contrast meets **WCAG AA** for body copy.
 
 ### Typography
-- A refined **display serif** (the italic-signature feel) for headlines/hero.
-- A clean **grotesk sans** for body and UI.
+- A **high-contrast fashion-editorial display serif with a distinctive italic** for headlines/hero — this is her single strongest type signal (think the *Canela / Reckless / PP Editorial New / Ogg* register seen all over her moodboard: "Life is texture", "Atelier Sucré", "Portfolio"). Lean into dramatic italic ligatures as a hero moment. Pick a real, license-appropriate font in this family.
+- A clean **grotesk sans** for body and UI (often set in **all-caps, wide letter-spacing** for labels, per her moodboard).
 - A **mono** for "designer meta" labels/eyebrows (section numbers, tags, captions).
 - Expose as `--font-serif`, `--font-sans`, `--font-mono` + a fluid type scale (`clamp()`-based `--text-display`, `--text-hero`, `--text-h1…`, `--text-body`, `--text-meta`, `--text-eyebrow`).
 
-### Motif system — build all four as reusable components (`components/motifs/`)
-These are the recurring visual signatures pulled from Cherry's real work. Build them as composable, prop-driven components so they can be dropped anywhere and tuned via tokens. **Experiment freely with how they're deployed** — the components are the vocabulary; the composition is yours.
+### Motif system — a reusable kit in `components/motifs/`
+These are Cherry's recurring visual signatures. Build them as composable, prop-driven, token-tinted components so they can be dropped anywhere. **Experiment freely with how they're deployed and feel free to invent more** in the same spirit — the kit below is a starting vocabulary, not the complete set.
 
-1. **`AsciiFlower`** — halftone/ASCII dotted floral texture. Uses: section backgrounds, dividers, hover-reveals, hero texture. Should be scalable and tint-able via tokens.
-2. **`FrameHandles`** — Figma-style corner-bracket selection handles + frame outlines wrapping elements (hero, cards, the name). Meta, designerly, playful. Consider animating them "snapping on."
-3. **`GradientField`** — soft pink/peach/lilac gradient washes for section and card fills.
-4. **`StickerCard`** — tilted, layered, tape/cutout photo cards for a scrapbook feel (seen in her tracker-app screens).
+**a) The ASCII / halftone family — not just flowers.** This is a whole texture language, not one component. Build an `AsciiArt` primitive (renders text/dot/character-grid art from a source, tint- and scale-able via tokens) plus a small library of forms. Go well beyond flowers:
+- **Flowers / botanicals** (her signature halftone florals)
+- **Coffee / moka pot** (Mugmood — steam, cups)
+- **Stars & sparkles** (recurring "small delight" in her posts)
+- **Hearts, hands, faces** (empathy/warmth motifs)
+- **Loops / infinity / arrows** (Everloop — memory, return, cycles)
+- **Tessellation / mosaic tiles** (Tessera — "tessera" = a mosaic tile; lean into this literally)
+- **Waves / clouds / soft weather** (slowness, calm)
+- **ASCII typographic play** — headings or the name rendered in character-grid/dot-matrix as a hero moment.
 
-**Rule:** the polished editorial layout is the canvas; motifs are the **25% surprise** — deployed with intent and restraint, never as wallpaper.
+Make it easy to add a new ASCII form as data (a character map or source glyph) so Cherry can grow the set. Uses: section backgrounds, dividers, hover-reveals, hero texture, loaders, empty states.
 
-### Color-per-section (optional experiment)
-Cherry's reference frames each carry their own palette (pink, mint, lilac). You may give sections or individual case studies their own accent while keeping the cream base constant. This is encouraged if it strengthens the work — expose it via content (`accent` field) so it stays data-driven.
+**b) `GradientField`** — **lush, multi-stop gradient washes.** Gradients are a *core* part of her identity (§4a references), not an afterthought — she loves them. Support smooth multi-stop, mesh/blurred, and grain-overlaid gradients across her real palettes (amber/gold, pink/peach, blue→lilac, and mixes). Use them boldly for section backgrounds, hero fields, card fills, and text-clip fills — while keeping the cream editorial base for reading surfaces so it never turns muddy.
+
+**c) `FrameHandles`** — Figma-style corner-bracket selection handles + frame outlines wrapping elements (hero, cards, the name). Meta, designerly, playful. Consider animating them "snapping on."
+
+**d) `StickerCard` / `Ephemera`** — tilted, layered, tape/cutout cards, **postage stamps, polaroids, paperclip notes**, and **hand-drawn line-art stickers** (like her *flowbutter* piece: simple outlined doodles in oxblood/cornflower/cream). Scrapbook-meets-mailroom. This carries a lot of the playful 40%.
+
+**e) `TextureField`** — **texture and materiality as identity** (her moodboard is literally titled *"Life is texture"*). Grain overlays, paper fiber, halftone-on-photo, tactile material crops (sand ripples, linen, wood, leather). Layer subtly over gradients and the cream base so surfaces feel physical, not flat.
+
+**f) `EditorialGrid`** — thin, *visible* layout grid lines as decoration (recurring in her pins). A designerly scaffold you can switch on for hero/section moments.
+
+**g) `SoftBlur`** — dreamy motion-blur / soft-focus treatment for type or imagery (blurred "portfolio", perfume shots, glow script). Use for atmosphere and depth, and as an enter/exit motion (focus-pull).
+
+**h) Cultural / natural motifs** — **goldfish & koi with water ripples**, botanicals, small stars/sparkles. These recur in her taste and connect to her **Vietnamese heritage** — use them as authentic, quiet threads (a rippling hover, a koi drifting through a hero), never as costume.
+
+> Optional but on-brand: glossy **3D renders** (she uses them — Aurora products, ceramics) as hero objects where assets exist.
+
+**Rule:** the editorial base is the frame; motifs + gradients + texture carry the **40%** — present and generous (per the 60/40 dial), but crafted, never sloppy wallpaper.
+
+### Color-per-section
+Her real projects each own a palette (amber Mugmood, pink Everloop/Aurora, blue-lilac Tessera). Give sections and individual case studies their own accent + gradient while keeping the cream reading base constant. Drive it from content (`accent` field) so it stays data-driven and Cherry can tune it.
+
+---
+
+## 4a. Visual references — study these before designing
+
+Reference images of Cherry's actual work live in **`docs/references/`** (Pramit will drop the source files there — Aurora deck frames, Everloop app screens, Mugmood, Tessera, and her personal banner). **Look at them first.** They are the ground truth for her aesthetic; this spec's words are a summary of them. Match the *feeling*, don't copy the layouts.
+
+What the references show (so this section stands even before the files land):
+
+- **Personal banner** — white ground, grey **ASCII/halftone floral** texture bleeding across it, scattered thin outline squares + a small framed four-petal flower icon, her headshot, and her name in an **elegant italic serif** inside a **Figma selection-frame with corner handles and a cursor**. This is the truest single artifact of her identity: editorial serif + designer-native Figma motifs + halftone flowers on calm ground.
+- **Aurora deck** — a suite of slide frames on **soft coral→pink→peach gradients** overlaid with halftone florals; big **italic serif titles** ("Aurora — When fashion, legacy meet technology", "Tone of Voice", "Branding", "Product Design", "App Design"), **mono** sub-labels and numbered tables-of-contents, and glossy **3D product renders** (necklaces/lockets, soft candy-colored objects). Lush, feminine, luxurious, warm.
+- **Everloop app screens** — **pink→peach gradient** UI; cards for **Record / Reflect / Revisit**; a "Daily Tracker" dot-grid; **scrapbook-style reflection cards** with photos ("Running 5k in Savannah", "Learning how to drive in LA"); a "Words from yourself" **envelope** with a hand-written-feeling note of encouragement. Tender, memory-driven, tactile.
+- **Mugmood** — **amber/gold gradient**, a **moka pot** illustration, gentle **stars**, phone mockups; the whole thing radiates warmth and slowness.
+- **Tessera** — **blue→pink→lilac gradient**, clean phone mockups, soft light; calmer and cooler than the others.
+
+**The through-line to reproduce:** lush gradients + soft light + halftone/ASCII texture + elegant italic serif + playful designer-native framing + tender, human copy. That combination *is* Cherry.
+
+### Her curated taste (observed from her Behance moodboard)
+Cherry's own *Branding Inspo* moodboard (18 pieces she chose) is the clearest window into her taste, and it's more **fashion-editorial and sophisticated** than "cute." This is the main reason the dial is 60/40 and not 40/60. Both links are primary direction for Fable:
+
+- **Branding Inspo moodboard** — <https://www.behance.net/moodboard/225059917/Branding-Inspo>
+- **Life is Texture — MASISA** — <https://www.behance.net/gallery/246908301/Life-is-Texture-MASISA>
+
+**The concrete visual DNA across her pins** (design toward this):
+- **High-contrast fashion italic display serif** as the star (see Typography above). Dramatic, elegant, a little theatrical.
+- **Texture & materiality as subject, not garnish** — sand ripples, cabbage/leaf, wood, leather, linen, mesh, grain. "Some spaces feel emotionless. But life doesn't."
+- **Visible editorial grids** and confident negative space.
+- **Dreamy motion-blur / soft focus** — blurred wordmarks, glow scripts, out-of-focus product shots.
+- **Glossy 3D renders** — acrylic keychains, pastel ceramics with tiny hand-drawn star doodles.
+- **Postage / paper ephemera & collage** — stamps, polaroids, paperclip notes, "mailroom" scrapbook layouts.
+- **Hand-drawn line-art stickers** — playful outlined doodles (her *flowbutter* piece) in muted oxblood / cornflower / cream. This is her childlike-but-crafted register.
+- **Goldfish/koi + water ripples + halftone dots** — a recurring East-Asian motif that connects to her **Vietnamese heritage**; use it as a real thread.
+- **Palette:** muted, sophisticated grounds (cream, off-white, sage/olive, terracotta/oxblood, dusty rose, cobalt/cornflower) with **punchy accent pops** (fire-engine red, chartreuse/lime, cobalt). **Not** candy pastels — richer and more grown-up than the pink-forward first read. Per-project accents can run warm/deep.
+
+So: her whimsy sits on top of genuinely **sophisticated, textural, fashion-editorial** branding taste. Build for *that* designer — playful, but with the eye of someone who pins Atelier Sucré and MASISA.
+
+> **Action for Pramit:** save the reference screenshots into `docs/references/` (any filenames; a short `docs/references/README.md` captioning each helps). Fable: consume every image in that folder **plus the two Behance links above** as primary visual direction. If the folder is empty at build time, proceed from the descriptions here and flag it in your changelog.
 
 ---
 
@@ -287,7 +365,9 @@ Mechanism copied faithfully from the source; visuals are yours.
 
 ## 8. Section visibility
 
-Build **all** sections now (Home, Work, About, Creative, Play) but only **surface Home, Work, About** in the nav. A `visibleSections` array in the content controls which routes appear in `Nav`. Hidden routes still render if visited directly (useful for Cherry to preview), but aren't linked. Flipping Creative/Play live later = a one-line content edit (or a dashboard toggle).
+Build **all** sections now (Home, Work, About, Creative, Play) but only **surface Home, Work, About** in the nav at launch. A `visibleSections` array in the content controls which routes appear in `Nav`. Hidden routes still render if visited directly (so Cherry can preview them), but aren't linked.
+
+**This must be togglable from the dashboard** — the same way the source portfolio lets its owner flip section visibility. The `DashboardEditor` includes a simple **visibility control** (a checkbox/toggle per section) that edits `visibleSections`; saving + publishing flips Creative/Play live with no code change. Default at launch: Home, Work, About visible; Creative, Play hidden.
 
 ---
 
