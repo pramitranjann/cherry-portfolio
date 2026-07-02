@@ -306,16 +306,37 @@ Again: the *toolkit* is fixed, the *choreography* is yours. Make navigating the 
 
 ---
 
-## 10. Seed content
+## 10. Seed content — Cherry's real work (no placeholders)
 
-Populate `site-content.json` with **3–5 case studies**. Two are real (fill with the info available; leave clearly-marked placeholders for missing detail):
+All content below is from Cherry's actual LinkedIn. These are **real projects** — treat the copy with care; it represents a real designer's identity. Where a specific detail is missing (a metric, a date, an image), leave a clearly-marked `TODO` for Cherry rather than inventing facts.
 
-1. **Aurora** — a jewelry / fashion brand where "legacy meets technology." Branding + product design: brand message, tone of voice, logo system, 3D product renders (a locket/necklace, a "music box of memory"), app interface screens. Type: Branding / Product Design. Rich visual case study.
-2. **Resolutions / habit-tracker app** — an app organized around **Record → Reflect → Revisit**: choose a tracking cadence for goals, log reflections with photos, and revisit accomplishments + words of encouragement from a past self. Type: Product Design. Warm, personal, scrapbook aesthetic.
+### Who she is (for `aboutPage`)
+- **Name:** Cherry Phan
+- **Headline:** Product & UX Designer — *"Design with empathy"*
+- **School:** Savannah College of Art and Design (SCAD), **BFA, Design and Visual Communications** (Jul 2025 – May 2029). Currently a **freshman** — this is a rising, early-career student portfolio; lean into promise and range, not fabricated seniority.
+- **Prior:** Christchurch School (2022–2025) — Headmaster's List, Unity Council President, National Honor Society, Varsity Sailing, Theatre (writing/stage design/acting), **Yearbook Design Lead**. (Signals: leadership, storytelling, visual/editorial design from early on. Use lightly.)
+- **SCAD activities:** Pre-College Assistant (PCA), SCAD Home Mentor, SCAD StartUp (Social Media), member of design competition communities (SCAD ClubHouse, CreateSC, Cornell CUxD).
+- **Throughline for the About voice:** empathy-led, emotionally intelligent design about **slowness, reflection, memory, and heritage**. Her Vietnamese roots are a genuine creative source (see Mugmood) — present it authentically, not as decoration.
+- **`aboutPage.experience`** should read as **design competitions / activities / awards**, not invented jobs. Notable award: **1st place, CreateSC 2026 UI/UX Designathon (USC "Innovative Design")** for Everloop.
+- **Contact:** LinkedIn `https://www.linkedin.com/in/cherry-phan-b03857395/`. (Email/other links: `TODO` — Cherry to provide.)
 
-Add 1–3 **placeholder** case studies with the same shape so the grid feels populated and the "add a project" flow is demonstrated. Mark placeholders clearly in their copy.
+### Case studies (5 real — this is the work grid)
+Each palette differs; use the per-study `accent` field so the cream base stays constant while each case study carries its own color. Slugs suggested in parentheses.
 
-Fill `aboutPage` from: SCAD UX design student; LinkedIn `https://www.linkedin.com/in/cherry-phan-b03857395/`. Leave clearly-marked TODOs where real bio/experience detail is needed.
+1. **Aurora** (`/work/aurora`) — Type: **Branding / Product Design**. A jewelry brand where *"fashion, legacy, and technology meet."* Full brand system: brand message, tone of voice (Inspiring / Comforting / Futuristic — consistency, authenticity & connection), logo + logo color, typography, 3D product renders (a locket/necklace; a *"music box of memory"*), and app interface screens. Accent: **pink**. Her most visually rich, systems-heavy project.
+
+2. **Mugmood** (`/work/mugmood`) — Type: **Product Design (concept)**. A journaling app that *"turns time waiting for coffee into a moment for reflection."* Born from a SCAD ClubHouse "Async" competition prompt about **slowing down**, and from a childhood memory of her grandpa waiting for his coffee to brew on the porch — rooted in **Vietnamese coffee culture** (Sài Gòn coffee talk, the unhurried life of Đà Nẵng). Daily prompt: *"Write about something you're grateful for today."* Tagline: *"Whenever everything feels fast, choose slow."* Moka-pot iconography, gentle stars. Accent: **amber / warm gold**.
+
+3. **Everloop** (`/work/everloop`) — Type: **Product Design** · **🏆 1st place, CreateSC 2026 UI/UX Designathon** (hosted by Innovative Design @ USC; theme *"Design Against Efficiency"*). Team project with Aarya Mahapatra. Concept: **"Memory Architecture"** — designing for how content *gains meaning over time* — helping people keep New Year's resolutions by turning past experiences into future motivation. Built on the **3 R's: Record → Reflect → Revisit**. (This is the Record/Reflect/Revisit app from the original reference screens.) Accent: **pink**.
+
+4. **Tessera** (`/work/tessera`) — Type: **Product Design (hackathon)**. Built at a **Cornell UX Design Club (CUxD)** hackathon with Steven Yanzhi Chen, Anna Vorontsova, and Jiwan Park. Turns fragmented in-between moments (waiting for the bus, standing in line) into **simple, meaningful actions** — reflections, goal-setting, a distraction-free to-do list with a timer — as an antidote to mindless scrolling. *"Use QuickStart to make the most of your small moments."* Cherry designed UI components and shaped the visual identity. Accent: **blue → lilac gradient**.
+
+5. **Wally** (`/work/wally`) — Type: **Product Design (UX 101 / team)**. A **student wallet app** tackling college financial literacy — one place to learn, save, and manage money. Her first university UX project; team led by Aarya Mahapatra (with Ashley Cho, Jiwan Park, Anna Vorontsova). **Cherry designed the "Wally" character** — a mascot/character-design contribution worth highlighting (ties to her illustration/character strength). Accent: **TODO — Cherry to confirm**.
+
+> Ordering on the grid: lead with the strongest/award-winning work (Aurora, Everloop) but let Cherry reorder via content. Every project above is real; the only invented content permitted is obvious connective prose — never fake metrics, quotes, or outcomes.
+
+### Creative + Play (built, hidden — §8)
+Seed lightly with real material: **Creative** can hold her character design (Wally), 3D renders (Aurora), and editorial/yearbook-leaning visual pieces. **Play** can hold small experiments. Both fine to ship sparse; they're not in the nav yet.
 
 ---
 
