@@ -18,6 +18,20 @@ This spec has two layers, and they are governed by opposite rules.
 
 One hard constraint on the boldness: it must read as **"sophisticated designer,"** not "juvenile." See §3 for the personality dial.
 
+### Before you build: critique this spec, then improve it
+
+**Do not treat this document as final.** It was written to give you a strong, faithful starting structure — but you (Fable 5) have better design thinking and more creative range than the process that produced it. So the first thing you should do is **read the whole spec and the implementation plan, then revise them according to your own judgment.**
+
+Concretely, before writing any code:
+1. Read this spec end to end, plus the implementation plan.
+2. Push back on anything you believe is weaker than it could be — layout ideas, the motif system, the information architecture, the case-study flow, the motion concept, even the section list. Propose better.
+3. Rewrite the affected parts of the spec/plan to reflect your improved design, and **note what you changed and why** (a short changelog at the top of the plan) so the human can see your reasoning.
+4. Then build from *your* revised version.
+
+The only things you may **not** revise away are the **fixed-skeleton items** (§0 first bullet: stack, file/folder structure, JSON-as-content pattern, typed schema, server loader, dashboard mechanics, no-database constraint) and the **two "good UX" keepers** in §1 (case-study narrative arc as a reorderable default, and the data-backed hover-preview work grid). Everything else is open to your improvement. If you think even a fixed item is wrong, don't silently override it — flag it in the changelog and explain, and leave the final call to the human.
+
+In short: **treat this spec as a smart colleague's first draft that you've been asked to make better, not as orders.**
+
 ---
 
 ## 1. What this is
