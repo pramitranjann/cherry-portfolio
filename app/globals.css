@@ -1,0 +1,208 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   Cherry Phan — design tokens
+   Every visual decision routes through these. Components must
+   reference tokens, never raw hex.
+   ============================================================ */
+
+:root {
+  /* --- color: muted sophisticated grounds, punchy pops --- */
+  --color-bg: #f7f2e8; /* warm cream paper */
+  --color-surface: #fcf9f2;
+  --color-ink: #211d18; /* charcoal-ink headlines */
+  --color-body: #433d35;
+  --color-muted: #877e71;
+  --color-line: rgba(33, 29, 24, 0.16);
+  --color-accent: #d96a8b; /* cherry dusty-rose — hers, present not dominant */
+  --color-accent-2: #4059c9; /* cornflower / cobalt */
+  --color-pop-red: #e0402a; /* fire-engine pop — sparingly */
+  --color-pop-lime: #b9c42a; /* chartreuse pop — sparingly */
+  --color-sage: #a9ac8c;
+  --color-terracotta: #be5f3e;
+  --color-oxblood: #6f2b26;
+  --color-amber: #e3a23c;
+  --color-peach: #f2b48c;
+  --color-lilac: #b4a3e0;
+
+  /* --- per-project accents + gradient stops (content `accent` field) --- */
+  --accent-aurora: #e87f9f;
+  --grad-aurora: #f2a79c, #ec7fa3, #f6c79a;
+  --accent-mugmood: #e3a23c;
+  --grad-mugmood: #f3c053, #e3973b, #c9742e;
+  --accent-everloop: #e76d96;
+  --grad-everloop: #f290af, #f6b591, #fbd9c0;
+  --accent-tessera: #7d95e8;
+  --grad-tessera: #92b1f0, #b4a3e0, #e4b8d6;
+  /* TODO(cherry): confirm Wally's accent color — cornflower placeholder */
+  --accent-wally: #6e85f7;
+  --grad-wally: #6e85f7, #b9c7fa;
+
+  /* --- fluid type scale --- */
+  --text-display: clamp(3.5rem, 10vw, 8.5rem);
+  --text-hero: clamp(2.5rem, 6vw, 5rem);
+  --text-h1: clamp(2rem, 4vw, 3.25rem);
+  --text-h2: clamp(1.5rem, 3vw, 2.25rem);
+  --text-body: clamp(1rem, 1.1vw, 1.125rem);
+  --text-meta: 0.8125rem;
+  --text-eyebrow: 0.75rem;
+
+  /* --- motion: breathes, never snaps --- */
+  --motion-slow: 900ms;
+  --motion-med: 600ms;
+  --motion-fast: 300ms;
+  --ease-drift: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+  --reveal-y: 28px;
+  --reveal-blur: 10px;
+}
+
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-ink: var(--color-ink);
+  --color-body: var(--color-body);
+  --color-muted: var(--color-muted);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-body);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: var(--text-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--color-ink);
+  font-family: var(--font-serif), Georgia, serif;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-surface);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent-2);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   Utilities (the motif surface treatments)
+   ============================================================ */
+
+/* grain — paper/film noise overlay. Apply to any positioned element. */
+.u-grain {
+  position: relative;
+}
+.u-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* visible editorial layout grid — designerly scaffold for hero/section moments */
+.u-gridlines {
+  background-image: linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+  background-size: clamp(4rem, 12vw, 10rem) clamp(4rem, 12vw, 10rem);
+}
+
+/* reading measure */
+.u-measure {
+  max-width: 65ch;
+}
+
+/* mono designer-meta eyebrow */
+.u-eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--text-eyebrow);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* wide-tracked caps label (grotesk register from her moodboard) */
+.u-label {
+  font-size: var(--text-meta);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* script accent — tiny annotations on ephemera only */
+.u-script {
+  font-family: var(--font-script), cursive;
+}
+
+/* rich text (sanitized markdown) */
+.u-rich-text > * + * {
+  margin-top: 1em;
+}
+.u-rich-text a {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-underline-offset: 3px;
+}
+.u-rich-text a:hover {
+  color: var(--color-accent);
+}
+.u-rich-text strong {
+  color: var(--color-ink);
+}
+.u-rich-text blockquote {
+  border-left: 2px solid var(--color-accent);
+  padding-left: 1.25rem;
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-size: 1.15em;
+  color: var(--color-ink);
+}
+.u-rich-text ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+.u-rich-text ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+}
+
+/* ============================================================
+   Reduced motion — non-negotiable
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
