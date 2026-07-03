@@ -1,27 +1,40 @@
 import type { Metadata } from 'next';
-import { Fraunces, Instrument_Sans, IBM_Plex_Mono, Caveat } from 'next/font/google';
+import localFont from 'next/font/local';
+import { Fragment_Mono, Caveat } from 'next/font/google';
 import { getSiteContent } from '@/lib/site-content';
 import { SiteCopyProvider } from '@/components/SiteCopyProvider';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import './globals.css';
 
-const serif = Fraunces({
-  subsets: ['latin'],
-  style: ['normal', 'italic'],
-  axes: ['opsz', 'SOFT', 'WONK'],
+/* Zodiak (Indian Type Foundry, Fontshare free license) — the high-contrast
+   editorial serif whose italic carries the whole identity. */
+const serif = localFont({
+  src: [
+    { path: './fonts/zodiak-400.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/zodiak-400i.woff2', weight: '400', style: 'italic' },
+    { path: './fonts/zodiak-700.woff2', weight: '700', style: 'normal' },
+    { path: './fonts/zodiak-700i.woff2', weight: '700', style: 'italic' },
+  ],
   variable: '--font-serif',
+  display: 'swap',
 });
 
-const sans = Instrument_Sans({
-  subsets: ['latin'],
-  style: ['normal', 'italic'],
+/* General Sans (ITF/Fontshare) — warm, confident grotesk for body + UI. */
+const sans = localFont({
+  src: [
+    { path: './fonts/gs-400.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/gs-400i.woff2', weight: '400', style: 'italic' },
+    { path: './fonts/gs-500.woff2', weight: '500', style: 'normal' },
+    { path: './fonts/gs-600.woff2', weight: '600', style: 'normal' },
+  ],
   variable: '--font-sans',
+  display: 'swap',
 });
 
-const mono = IBM_Plex_Mono({
+const mono = Fragment_Mono({
   subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: '400',
   style: ['normal', 'italic'],
   variable: '--font-mono',
 });

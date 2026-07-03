@@ -22,8 +22,14 @@ export function ProjectCard({ project, index, onHoverStart, onHoverEnd }: Projec
   return (
     <Link
       href={project.href}
-      className="group block"
-      style={{ borderTop: '1px solid var(--color-line)' }}
+      className="group -mx-4 block px-4 transition-colors hover:bg-[color-mix(in_srgb,var(--row-accent)_8%,transparent)] md:-mx-6 md:px-6"
+      style={
+        {
+          borderTop: '1px solid var(--color-line)',
+          transitionDuration: 'var(--motion-fast)',
+          '--row-accent': accentVar(project.accent),
+        } as React.CSSProperties
+      }
       onMouseEnter={() => onHoverStart?.(project)}
       onMouseLeave={() => onHoverEnd?.()}
       onFocus={() => onHoverStart?.(project)}
@@ -55,14 +61,20 @@ export function ProjectCard({ project, index, onHoverStart, onHoverEnd }: Projec
       </div>
 
       <div className="flex items-baseline gap-5 py-7 md:gap-8 md:py-9">
-        <span className="u-eyebrow shrink-0 pt-2">{String(index + 1).padStart(2, '0')}</span>
+        <span
+          className="u-eyebrow shrink-0 pt-2 transition-colors group-hover:text-[color:var(--row-accent)]"
+          style={{ transitionDuration: 'var(--motion-fast)' }}
+        >
+          {String(index + 1).padStart(2, '0')}
+        </span>
 
         <div className="min-w-0 flex-1">
           <h3
-            className="font-serif italic transition-colors group-hover:text-[color:var(--color-accent)]"
+            className="font-serif italic transition-transform group-hover:translate-x-2"
             style={{
               fontSize: 'var(--text-h1)',
-              transitionDuration: 'var(--motion-fast)',
+              transitionDuration: 'var(--motion-med)',
+              transitionTimingFunction: 'var(--ease-settle)',
             }}
           >
             {project.title}

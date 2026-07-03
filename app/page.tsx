@@ -40,43 +40,95 @@ export default function Home() {
           className="absolute -bottom-4 -left-2 hidden text-[11px] opacity-60 md:block"
         />
 
-        <IntroAnimation className="relative mx-auto flex max-w-6xl flex-col justify-center px-6 pb-24 pt-[14vh]">
+        <IntroAnimation className="relative mx-auto flex max-w-6xl flex-col justify-center px-6 pb-20 pt-[12vh]">
           <p data-intro="focus" className="u-eyebrow">
             {home.hero.eyebrow}
           </p>
 
-          <div data-intro="focus" className="mt-8 self-start">
+          <div data-intro="focus" className="mt-10 self-start">
             <FrameHandles label="cherry">
               <h1
-                className="font-serif italic"
+                className="relative font-serif italic"
                 style={{
                   fontSize: 'var(--text-display)',
-                  lineHeight: 1.04,
-                  padding: '0.05em 0.12em',
+                  lineHeight: 0.94,
+                  padding: '0.08em 0.14em 0.12em',
                 }}
               >
-                {home.hero.name}
+                {home.hero.name.split(' ').map((word, i) => (
+                  <span
+                    key={word}
+                    className="block"
+                    style={i > 0 ? { marginLeft: '0.55em' } : undefined}
+                  >
+                    {word}
+                  </span>
+                ))}
+                {/* her red-script annotation — the moodboard's handwriting moment */}
+                <span
+                  data-intro="pop"
+                  aria-hidden="true"
+                  className="u-script absolute"
+                  style={{
+                    right: '-0.15em',
+                    bottom: '0.62em',
+                    fontSize: 'clamp(1.4rem, 2.6vw, 2.2rem)',
+                    fontStyle: 'normal',
+                    color: 'var(--color-accent)',
+                    transform: 'rotate(-8deg)',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  slow down ✿
+                </span>
               </h1>
             </FrameHandles>
           </div>
 
-          <p
-            data-intro="focus"
-            className="mt-10 font-serif italic"
-            style={{ fontSize: 'var(--text-h2)', color: 'var(--color-ink)' }}
-          >
-            {home.hero.tagline}
-          </p>
-
-          <p data-intro="focus" className="u-measure mt-5" style={{ color: 'var(--color-muted)' }}>
-            {home.hero.intro}
-          </p>
-
-          <p data-intro="pop" className="u-eyebrow mt-20">
-            {copy.scrollCue}
-          </p>
+          <div className="mt-12 flex flex-wrap items-end justify-between gap-8">
+            <div>
+              <p
+                data-intro="focus"
+                className="font-serif italic"
+                style={{ fontSize: 'var(--text-h2)', color: 'var(--color-ink)' }}
+              >
+                {home.hero.tagline}
+              </p>
+              <p data-intro="focus" className="u-measure mt-4" style={{ color: 'var(--color-muted)' }}>
+                {home.hero.intro}
+              </p>
+            </div>
+            <p data-intro="pop" className="u-eyebrow pb-1">
+              {copy.scrollCue}
+            </p>
+          </div>
         </IntroAnimation>
       </section>
+
+      {/* ============ marquee ribbon ============ */}
+      {typeof copy.marquee === 'string' && copy.marquee && (
+        <div
+          aria-hidden="true"
+          className="mt-4 overflow-hidden py-5"
+          style={{ borderTop: '1px solid var(--color-line)', borderBottom: '1px solid var(--color-line)' }}
+        >
+          <div className="u-marquee items-baseline gap-10 pr-10">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <span key={i} className="flex shrink-0 items-baseline gap-10">
+                <span
+                  className="font-serif italic"
+                  style={{ fontSize: 'var(--text-h2)', color: 'var(--color-ink)', whiteSpace: 'nowrap' }}
+                >
+                  {copy.marquee as string}
+                </span>
+                <span aria-hidden="true" style={{ color: 'var(--color-accent)', fontSize: '1.2rem' }}>
+                  ✿
+                </span>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* ============ selected work ============ */}
       <section className="mx-auto mt-16 max-w-6xl px-6 md:mt-24">
@@ -111,6 +163,7 @@ export default function Home() {
           <GsapReveal className="justify-self-center md:justify-self-start">
             <StickerCard kind="polaroid" tilt={-3} className="w-60">
               <GradientField
+                preset="everloop"
                 grain
                 className="flex aspect-square w-full items-center justify-center overflow-hidden"
               >

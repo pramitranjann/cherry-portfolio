@@ -109,12 +109,12 @@ export function CaseStudyLayout({ study }: { study: CaseStudyContent }) {
         <GradientField stops={gradientStops(study.accent)} grain className="relative overflow-hidden">
           <div className="mx-auto max-w-6xl px-6 pb-16 pt-20 md:pb-24 md:pt-28">
             <p className="u-eyebrow" style={{ color: 'var(--color-ink)', opacity: 0.75 }}>
-              {study.type}
+              ( work / {study.slug} ) — {study.type}
               {study.year ? ` · ${study.year}` : ''}
             </p>
             <h1
               className="mt-4 font-serif italic"
-              style={{ fontSize: 'var(--text-hero)', lineHeight: 1.05 }}
+              style={{ fontSize: 'clamp(3.25rem, 10vw, 9rem)', lineHeight: 0.98 }}
             >
               {study.title}
             </h1>

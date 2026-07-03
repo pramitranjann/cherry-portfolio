@@ -13,14 +13,20 @@
         {
           "title": "Aurora",
           "oneliner": "A jewelry brand where fashion, legacy, and technology meet.",
-          "tags": ["Branding", "Product Design"],
+          "tags": [
+            "Branding",
+            "Product Design"
+          ],
           "href": "/work/aurora",
           "accent": "aurora"
         },
         {
           "title": "Everloop",
           "oneliner": "Turning past experiences into future motivation — Record, Reflect, Revisit.",
-          "tags": ["Product Design", "1st place — CreateSC 2026"],
+          "tags": [
+            "Product Design",
+            "1st place — CreateSC 2026"
+          ],
           "href": "/work/everloop",
           "accent": "everloop",
           "year": "2026"
@@ -28,7 +34,10 @@
         {
           "title": "Mugmood",
           "oneliner": "A journaling app that turns time waiting for coffee into a moment for reflection.",
-          "tags": ["Product Design", "Concept"],
+          "tags": [
+            "Product Design",
+            "Concept"
+          ],
           "href": "/work/mugmood",
           "accent": "mugmood"
         }
@@ -47,14 +56,20 @@
       {
         "title": "Aurora",
         "oneliner": "A jewelry brand where fashion, legacy, and technology meet.",
-        "tags": ["Branding", "Product Design"],
+        "tags": [
+          "Branding",
+          "Product Design"
+        ],
         "href": "/work/aurora",
         "accent": "aurora"
       },
       {
         "title": "Everloop",
         "oneliner": "Turning past experiences into future motivation — Record, Reflect, Revisit.",
-        "tags": ["Product Design", "1st place — CreateSC 2026"],
+        "tags": [
+          "Product Design",
+          "1st place — CreateSC 2026"
+        ],
         "href": "/work/everloop",
         "accent": "everloop",
         "year": "2026"
@@ -62,21 +77,30 @@
       {
         "title": "Mugmood",
         "oneliner": "A journaling app that turns time waiting for coffee into a moment for reflection.",
-        "tags": ["Product Design", "Concept"],
+        "tags": [
+          "Product Design",
+          "Concept"
+        ],
         "href": "/work/mugmood",
         "accent": "mugmood"
       },
       {
         "title": "Tessera",
         "oneliner": "Turning fragmented in-between moments into simple, meaningful actions.",
-        "tags": ["Product Design", "Hackathon"],
+        "tags": [
+          "Product Design",
+          "Hackathon"
+        ],
         "href": "/work/tessera",
         "accent": "tessera"
       },
       {
         "title": "Wally",
         "oneliner": "A student wallet app — one place to learn, save, and manage money.",
-        "tags": ["Product Design", "Character Design"],
+        "tags": [
+          "Product Design",
+          "Character Design"
+        ],
         "href": "/work/wally",
         "accent": "wally"
       }
@@ -181,22 +205,38 @@
       "play": "play"
     },
     "footerLine": "Let's take our time.",
+    "marquee": "whenever everything feels fast, choose slow",
     "footerMeta": "Savannah, GA — designed & written by Cherry Phan",
     "workCta": "see all work",
     "scrollCue": "( scroll slowly )",
     "emptyState": "( nothing here yet — come back soon )"
   },
-  "visibleSections": ["home", "work", "about"],
+  "visibleSections": [
+    "home",
+    "work",
+    "about"
+  ],
   "caseStudies": [
     {
       "slug": "aurora",
       "title": "Aurora",
       "oneliner": "A jewelry brand where fashion, legacy, and technology meet.",
       "type": "Branding / Product Design",
-      "tags": ["Brand system", "Tone of voice", "3D", "App design"],
+      "tags": [
+        "Brand system",
+        "Tone of voice",
+        "3D",
+        "App design"
+      ],
       "accent": "aurora",
-      "prev": { "title": "Wally", "href": "/work/wally" },
-      "next": { "title": "Everloop", "href": "/work/everloop" },
+      "prev": {
+        "title": "Wally",
+        "href": "/work/wally"
+      },
+      "next": {
+        "title": "Everloop",
+        "href": "/work/everloop"
+      },
       "pullQuote": "A locket can be a music box of memory.",
       "sections": [
         {
@@ -228,13 +268,23 @@
       "title": "Everloop",
       "oneliner": "Turning past experiences into future motivation — Record, Reflect, Revisit.",
       "type": "Product Design",
-      "tags": ["Memory architecture", "Team project", "Designathon"],
+      "tags": [
+        "Memory architecture",
+        "Team project",
+        "Designathon"
+      ],
       "accent": "everloop",
       "year": "2026",
       "award": "1st place — CreateSC 2026 UI/UX Designathon, hosted by Innovative Design @ USC",
       "team": "With Aarya Mahapatra",
-      "prev": { "title": "Aurora", "href": "/work/aurora" },
-      "next": { "title": "Mugmood", "href": "/work/mugmood" },
+      "prev": {
+        "title": "Aurora",
+        "href": "/work/aurora"
+      },
+      "next": {
+        "title": "Mugmood",
+        "href": "/work/mugmood"
+      },
       "pullQuote": "Content gains meaning over time.",
       "sections": [
         {
@@ -267,10 +317,20 @@
       "title": "Mugmood",
       "oneliner": "A journaling app that turns time waiting for coffee into a moment for reflection.",
       "type": "Product Design (concept)",
-      "tags": ["Journaling", "Slowness", "Vietnamese coffee culture"],
+      "tags": [
+        "Journaling",
+        "Slowness",
+        "Vietnamese coffee culture"
+      ],
       "accent": "mugmood",
-      "prev": { "title": "Everloop", "href": "/work/everloop" },
-      "next": { "title": "Tessera", "href": "/work/tessera" },
+      "prev": {
+        "title": "Everloop",
+        "href": "/work/everloop"
+      },
+      "next": {
+        "title": "Tessera",
+        "href": "/work/tessera"
+      },
       "pullQuote": "Whenever everything feels fast, choose slow.",
       "sections": [
         {
@@ -298,11 +358,21 @@
       "title": "Tessera",
       "oneliner": "Turning fragmented in-between moments into simple, meaningful actions.",
       "type": "Product Design (hackathon)",
-      "tags": ["UI design", "Visual identity", "Team project"],
+      "tags": [
+        "UI design",
+        "Visual identity",
+        "Team project"
+      ],
       "accent": "tessera",
       "team": "With Steven Yanzhi Chen, Anna Vorontsova, and Jiwan Park — Cornell UX Design Club (CUxD) hackathon",
-      "prev": { "title": "Mugmood", "href": "/work/mugmood" },
-      "next": { "title": "Wally", "href": "/work/wally" },
+      "prev": {
+        "title": "Mugmood",
+        "href": "/work/mugmood"
+      },
+      "next": {
+        "title": "Wally",
+        "href": "/work/wally"
+      },
       "pullQuote": "Use QuickStart to make the most of your small moments.",
       "sections": [
         {
@@ -329,11 +399,21 @@
       "title": "Wally",
       "oneliner": "A student wallet app — one place to learn, save, and manage money.",
       "type": "Product Design (UX 101, team)",
-      "tags": ["Financial literacy", "Character design", "Team project"],
+      "tags": [
+        "Financial literacy",
+        "Character design",
+        "Team project"
+      ],
       "accent": "wally",
       "team": "Team led by Aarya Mahapatra, with Ashley Cho, Jiwan Park, and Anna Vorontsova",
-      "prev": { "title": "Tessera", "href": "/work/tessera" },
-      "next": { "title": "Aurora", "href": "/work/aurora" },
+      "prev": {
+        "title": "Tessera",
+        "href": "/work/tessera"
+      },
+      "next": {
+        "title": "Aurora",
+        "href": "/work/aurora"
+      },
       "sections": [
         {
           "key": "problem",

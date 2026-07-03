@@ -7,42 +7,43 @@
    ============================================================ */
 
 :root {
-  /* --- color: muted sophisticated grounds, punchy pops --- */
-  --color-bg: #f7f2e8; /* warm cream paper */
-  --color-surface: #fcf9f2;
-  --color-ink: #211d18; /* charcoal-ink headlines */
-  --color-body: #433d35;
-  --color-muted: #877e71;
-  --color-line: rgba(33, 29, 24, 0.16);
-  --color-accent: #d96a8b; /* cherry dusty-rose — hers, present not dominant */
-  --color-accent-2: #4059c9; /* cornflower / cobalt */
-  --color-pop-red: #e0402a; /* fire-engine pop — sparingly */
-  --color-pop-lime: #b9c42a; /* chartreuse pop — sparingly */
-  --color-sage: #a9ac8c;
-  --color-terracotta: #be5f3e;
-  --color-oxblood: #6f2b26;
-  --color-amber: #e3a23c;
-  --color-peach: #f2b48c;
-  --color-lilac: #b4a3e0;
+  /* --- color: warm paper ground, ink that's actually dark, punchy pops --- */
+  --color-bg: #f3ecdd; /* warm cream paper, a shade deeper */
+  --color-surface: #faf6ea;
+  --color-ink: #171310; /* near-black warm ink */
+  --color-body: #3b342b;
+  --color-muted: #7e7364;
+  --color-line: rgba(23, 19, 16, 0.2);
+  --color-accent: #d8351f; /* cherry red — the fire-engine pop from her moodboard, and literally her name */
+  --color-accent-2: #2c46c7; /* cobalt — the Figma-native blue */
+  --color-pink: #e2679a; /* her pink — lives in project palettes, not everywhere */
+  --color-pop-red: var(--color-accent);
+  --color-pop-lime: #b7c321;
+  --color-sage: #9ea37d;
+  --color-terracotta: #b9532f;
+  --color-oxblood: #6e241d;
+  --color-amber: #de9526;
+  --color-peach: #f0a97a;
+  --color-lilac: #a78fdd;
 
   /* --- per-project accents + gradient stops (content `accent` field) --- */
-  --accent-aurora: #e87f9f;
-  --grad-aurora: #f2a79c, #ec7fa3, #f6c79a;
-  --accent-mugmood: #e3a23c;
-  --grad-mugmood: #f3c053, #e3973b, #c9742e;
-  --accent-everloop: #e76d96;
-  --grad-everloop: #f290af, #f6b591, #fbd9c0;
-  --accent-tessera: #7d95e8;
-  --grad-tessera: #92b1f0, #b4a3e0, #e4b8d6;
+  --accent-aurora: #e0508c;
+  --grad-aurora: #f0987f, #e75e92, #f6bb82;
+  --accent-mugmood: #d98a1f;
+  --grad-mugmood: #f2bb3e, #de8b25, #b45c17;
+  --accent-everloop: #e75e92;
+  --grad-everloop: #f27fa2, #f3a379, #fad3a8;
+  --accent-tessera: #5a7de0;
+  --grad-tessera: #7fa3f0, #a78fdd, #e0a3cb;
   /* TODO(cherry): confirm Wally's accent color — cornflower placeholder */
-  --accent-wally: #6e85f7;
-  --grad-wally: #6e85f7, #b9c7fa;
+  --accent-wally: #5d77f5;
+  --grad-wally: #5d77f5, #a9bcfa;
 
-  /* --- fluid type scale --- */
-  --text-display: clamp(3.5rem, 10vw, 8.5rem);
-  --text-hero: clamp(2.5rem, 6vw, 5rem);
-  --text-h1: clamp(2rem, 4vw, 3.25rem);
-  --text-h2: clamp(1.5rem, 3vw, 2.25rem);
+  /* --- fluid type scale — editorial drama --- */
+  --text-display: clamp(4rem, 12vw, 11rem);
+  --text-hero: clamp(2.75rem, 7vw, 6rem);
+  --text-h1: clamp(2.25rem, 4.5vw, 3.75rem);
+  --text-h2: clamp(1.6rem, 3vw, 2.5rem);
   --text-body: clamp(1rem, 1.1vw, 1.125rem);
   --text-meta: 0.8125rem;
   --text-eyebrow: 0.75rem;
@@ -84,6 +85,18 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* the whole site sits on paper — one fixed grain pass over everything */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
 }
 
 h1,
@@ -190,8 +203,23 @@ h3 {
   padding-left: 1.25rem;
 }
 
+/* marquee — the slow editorial ribbon */
+@keyframes u-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.u-marquee {
+  display: flex;
+  width: max-content;
+  animation: u-marquee 36s linear infinite;
+}
+
 /* ============================================================
-   Reduced motion — non-negotiable
+   Reduced motion
    ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
