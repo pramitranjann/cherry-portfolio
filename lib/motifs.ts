@@ -134,3 +134,21 @@ export function gradientStops(name?: string): string {
   if (name && isPreset(name)) return `var(--grad-${name})`;
   return 'var(--color-accent), var(--color-peach)';
 }
+
+/** Which ASCII form stands in for a project when it has no imagery yet. */
+export function motifForAccent(name?: string): AsciiFormName {
+  switch (name) {
+    case 'aurora':
+      return 'flower';
+    case 'mugmood':
+      return 'moka';
+    case 'everloop':
+      return 'loop';
+    case 'tessera':
+      return 'tile';
+    case 'wally':
+      return 'star';
+    default:
+      return 'sparkle';
+  }
+}
