@@ -1,5 +1,9 @@
 import type { Metadata } from 'next';
 import { Fraunces, Instrument_Sans, IBM_Plex_Mono, Caveat } from 'next/font/google';
+import { getSiteContent } from '@/lib/site-content';
+import { SiteCopyProvider } from '@/components/SiteCopyProvider';
+import { Nav } from '@/components/Nav';
+import { Footer } from '@/components/Footer';
 import './globals.css';
 
 const serif = Fraunces({
@@ -37,9 +41,18 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const { copy } = getSiteContent();
+
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable} ${script.variable}`}>
-      <body>{children}</body>
+      <body>
+        <SiteCopyProvider copy={copy}>
+          <Nav />
+          {/* Nav is fixed (h-16); pages start below it */}
+          <div className="pt-16">{children}</div>
+          <Footer />
+        </SiteCopyProvider>
+      </body>
     </html>
   );
 }
