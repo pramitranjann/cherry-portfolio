@@ -21,8 +21,6 @@ export default function RippleField({
   drift = false,
 }: RippleFieldProps) {
   const stroke = tint ? accentVar(tint) : 'var(--color-line)';
-  const cx = 200;
-  const cy = 120;
   const rxBase = 18;
   const ratio = 2.4;
 
@@ -38,8 +36,11 @@ export default function RippleField({
 
   const maxRx = ellipses[ellipses.length - 1]?.rx ?? rxBase;
   const maxRy = ellipses[ellipses.length - 1]?.ry ?? rxBase / ratio;
-  const viewW = Math.ceil((cx + maxRx) * 1.05);
-  const viewH = Math.ceil((cy + maxRy) * 1.15);
+  // rings sit dead-centre of the viewBox so callers can centre the SVG itself
+  const cx = Math.ceil(maxRx * 1.04);
+  const cy = Math.ceil(maxRy * 1.08);
+  const viewW = cx * 2;
+  const viewH = cy * 2;
 
   return (
     <svg

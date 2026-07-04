@@ -99,8 +99,10 @@ export default function KoiDrift({ count = 2, className, scheme = 'paper' }: Koi
           { body: 'var(--color-amber)', patch: 'var(--color-surface)', patch2: 'var(--color-terracotta)', outline: 'var(--color-oxblood)' },
         ];
 
+  // NOTE: no position class of its own — callers place it (usually `absolute`);
+  // the fish inside anchor to this box via their offset paths.
   return (
-    <div aria-hidden="true" className={`pointer-events-none relative ${className ?? ''}`}>
+    <div aria-hidden="true" className={`pointer-events-none ${className ?? 'relative'}`}>
       <style>{`
         @keyframes motif-koi-swim {
           0% { offset-distance: 0%; }

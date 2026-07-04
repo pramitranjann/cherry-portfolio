@@ -7,7 +7,8 @@ import { AnimatedEyebrow } from '@/components/AnimatedEyebrow';
 import { CaseStudyRail } from '@/components/CaseStudyRail';
 import GradientField from '@/components/motifs/GradientField';
 import RippleField from '@/components/motifs/RippleField';
-import StickerCard from '@/components/motifs/StickerCard';
+import HalftoneField from '@/components/motifs/HalftoneField';
+import Starburst from '@/components/motifs/Starburst';
 
 function Media({ block }: { block: MediaBlock }) {
   if (block.kind === 'embed') {
@@ -107,13 +108,43 @@ export function CaseStudyLayout({ study }: { study: CaseStudyContent }) {
       {/* ============ hero ============ */}
       <header>
         <GradientField stops={gradientStops(study.accent)} grain className="relative overflow-hidden">
-          <div className="mx-auto max-w-6xl px-6 pb-16 pt-20 md:pb-24 md:pt-28">
-            <p className="u-eyebrow" style={{ color: 'var(--color-ink)', opacity: 0.75 }}>
-              ( work / {study.slug} ) — {study.type}
+          {/* halftone florals drifting over the gradient — the Aurora-deck feel */}
+          <HalftoneField
+            variant="flower"
+            tint="var(--color-surface)"
+            className="absolute -right-16 -top-16 w-80 opacity-25"
+          />
+          <HalftoneField
+            variant="fade"
+            tint="var(--color-surface)"
+            className="absolute -bottom-24 left-[12%] w-72 opacity-20"
+          />
+          <div className="relative mx-auto max-w-6xl px-6 pb-16 pt-20 md:pb-24 md:pt-28">
+            {/* breadcrumbs */}
+            <nav aria-label="Breadcrumb" className="u-eyebrow flex items-center gap-2" style={{ color: 'var(--color-ink)' }}>
+              <Link href="/" className="opacity-60 transition-opacity hover:opacity-100">
+                home
+              </Link>
+              <span aria-hidden="true" style={{ opacity: 0.4 }}>
+                /
+              </span>
+              <Link href="/work" className="opacity-60 transition-opacity hover:opacity-100">
+                work
+              </Link>
+              <span aria-hidden="true" style={{ opacity: 0.4 }}>
+                /
+              </span>
+              <span aria-current="page" style={{ color: 'var(--color-ink)' }}>
+                {study.title.toLowerCase()}
+              </span>
+            </nav>
+
+            <p className="u-eyebrow mt-6" style={{ color: 'var(--color-ink)', opacity: 0.75 }}>
+              {study.type}
               {study.year ? ` · ${study.year}` : ''}
             </p>
             <h1
-              className="mt-4 font-serif italic"
+              className="mt-3 font-serif italic"
               style={{ fontSize: 'clamp(3.25rem, 10vw, 9rem)', lineHeight: 0.98 }}
             >
               {study.title}
@@ -148,10 +179,11 @@ export function CaseStudyLayout({ study }: { study: CaseStudyContent }) {
             )}
 
             {study.award && (
-              <div className="absolute right-6 top-16 hidden max-w-[15rem] md:block">
-                <StickerCard kind="stamp" tilt={3}>
-                  <p className="px-4 py-3 font-mono text-[0.7rem] leading-relaxed">🏆 {study.award}</p>
-                </StickerCard>
+              <div className="absolute right-8 top-14 hidden md:block">
+                <Starburst className="h-44 w-44">
+                  <span className="block text-[0.9rem] font-bold">1st place</span>
+                  <span className="mt-1 block">{study.award.replace(/^1st place\s*—\s*/i, '').split(',')[0]}</span>
+                </Starburst>
               </div>
             )}
           </div>

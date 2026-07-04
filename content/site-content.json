@@ -205,6 +205,8 @@
       "play": "play"
     },
     "footerLine": "Let's take our time.",
+    "heroRole": "( product & ux designer )",
+    "heroSkills": ["ux design", "branding", "illustration", "storytelling"],
     "marquee": "whenever everything feels fast, choose slow",
     "footerMeta": "Savannah, GA — designed & written by Cherry Phan",
     "workCta": "see all work",

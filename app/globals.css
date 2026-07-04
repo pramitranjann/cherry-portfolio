@@ -58,15 +58,21 @@
   --reveal-blur: 10px;
 }
 
+/* next/font sets --font-zodiak/--font-gs/--font-frag/--font-caveat on <html>.
+   Map them to the tokens components reference (:root aliases) AND to Tailwind's
+   font-serif / font-sans / font-mono utilities (@theme). Distinct names on
+   purpose — a self-reference here once made font resolution a cascade race. */
+:root {
+  --font-serif: var(--font-zodiak);
+  --font-sans: var(--font-gs);
+  --font-mono: var(--font-frag);
+  --font-script: var(--font-caveat);
+}
+
 @theme inline {
-  --color-bg: var(--color-bg);
-  --color-surface: var(--color-surface);
-  --color-ink: var(--color-ink);
-  --color-body: var(--color-body);
-  --color-muted: var(--color-muted);
-  --font-serif: var(--font-serif);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
+  --font-serif: var(--font-zodiak);
+  --font-sans: var(--font-gs);
+  --font-mono: var(--font-frag);
 }
 
 /* ============================================================
@@ -149,13 +155,25 @@ h3 {
   max-width: 65ch;
 }
 
-/* mono designer-meta eyebrow */
+/* mono designer-meta eyebrow — set in cobalt ink, like the CVs she pins */
 .u-eyebrow {
   font-family: var(--font-mono), monospace;
   font-size: var(--text-eyebrow);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--color-accent-2);
+}
+
+/* hairline pill label */
+.u-pill {
+  display: inline-block;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--text-eyebrow);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 /* wide-tracked caps label (grotesk register from her moodboard) */

@@ -16,7 +16,7 @@ const serif = localFont({
     { path: './fonts/zodiak-700.woff2', weight: '700', style: 'normal' },
     { path: './fonts/zodiak-700i.woff2', weight: '700', style: 'italic' },
   ],
-  variable: '--font-serif',
+  variable: '--font-zodiak',
   display: 'swap',
 });
 
@@ -28,7 +28,7 @@ const sans = localFont({
     { path: './fonts/gs-500.woff2', weight: '500', style: 'normal' },
     { path: './fonts/gs-600.woff2', weight: '600', style: 'normal' },
   ],
-  variable: '--font-sans',
+  variable: '--font-gs',
   display: 'swap',
 });
 
@@ -36,12 +36,12 @@ const mono = Fragment_Mono({
   subsets: ['latin'],
   weight: '400',
   style: ['normal', 'italic'],
-  variable: '--font-mono',
+  variable: '--font-frag',
 });
 
 const script = Caveat({
   subsets: ['latin'],
-  variable: '--font-script',
+  variable: '--font-caveat',
 });
 
 export const metadata: Metadata = {
@@ -57,7 +57,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const { copy } = getSiteContent();
 
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable} ${script.variable}`}>
+    <html
+      lang="en"
+      className={`${serif.variable} ${sans.variable} ${mono.variable} ${script.variable}`}
+    >
       <body>
         <SiteCopyProvider copy={copy}>
           <Nav />
