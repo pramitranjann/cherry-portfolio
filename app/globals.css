@@ -84,6 +84,8 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: none;
   cursor: var(--cursor-blossom), auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html::-webkit-scrollbar,
@@ -173,6 +175,54 @@ h3 {
   max-width: 65ch;
 }
 
+/* ============================================================
+   Home hero
+   ============================================================ */
+
+.home-hero-section {
+  min-height: calc(100svh - 4rem);
+}
+
+.home-hero {
+  min-height: calc(100svh - 4rem);
+  padding-bottom: 6rem;
+  padding-top: 2rem;
+}
+
+.home-hero-bottom {
+  position: absolute;
+  right: 2.5rem;
+  bottom: 1.75rem;
+  left: 2.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-areas: 'contact scroll place';
+  align-items: end;
+  gap: 1rem;
+}
+
+.home-hero-contact {
+  grid-area: contact;
+  justify-self: start;
+  white-space: nowrap;
+}
+
+.home-hero-scroll {
+  grid-area: scroll;
+  justify-self: center;
+  white-space: nowrap;
+}
+
+.home-hero-place {
+  grid-area: place;
+  justify-self: end;
+  white-space: nowrap;
+}
+
+.home-hero-intro {
+  text-wrap: pretty;
+}
+
 /* mono designer-meta eyebrow — set in cobalt ink, like the CVs she pins */
 .u-eyebrow {
   font-family: var(--font-mono), monospace;
@@ -251,7 +301,115 @@ h3 {
 .u-marquee {
   display: flex;
   width: max-content;
-  animation: u-marquee 36s linear infinite;
+  min-width: 200%;
+  animation: u-marquee 20s linear infinite;
+  will-change: transform;
+}
+
+.home-marquee {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+@media (max-width: 699px) {
+  :root {
+    --text-display: 4.55rem;
+    --text-h2: 1.95rem;
+    --text-body: 1.02rem;
+    --text-eyebrow: 0.7rem;
+  }
+
+  .u-eyebrow {
+    letter-spacing: 0.11em;
+  }
+
+  .home-hero {
+    min-height: calc(100svh - 4rem);
+    padding: 1.75rem 1.25rem 7.6rem;
+  }
+
+  .home-hero-meta {
+    top: 1.35rem;
+    max-width: 42vw;
+    line-height: 1.3;
+  }
+
+  .home-hero-koi-mobile {
+    top: 8.25rem;
+    right: -1.75rem;
+    width: 18rem;
+    height: 13rem;
+    opacity: 0.68;
+    filter: saturate(0.95);
+  }
+
+  .home-hero-title-wrap {
+    width: min(100%, 21rem);
+    margin-top: 3.1rem;
+  }
+
+  .home-hero-name {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.19em 0.34em 0.23em !important;
+  }
+
+  .home-hero-role {
+    max-width: 100%;
+    line-height: 1.35;
+  }
+
+  .home-hero-tagline {
+    max-width: 11.5em;
+    margin-top: 3rem;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  .home-hero-intro {
+    max-width: 29ch;
+    margin-top: 1.45rem;
+    line-height: 1.62;
+  }
+
+  .home-hero-bottom {
+    right: 2rem;
+    bottom: 1.75rem;
+    left: 1.5rem;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      'contact place'
+      'scroll scroll';
+    row-gap: 1rem;
+    column-gap: 0.85rem;
+  }
+
+  .home-hero-contact,
+  .home-hero-place,
+  .home-hero-scroll {
+    min-width: 0;
+    line-height: 1.35;
+  }
+
+  .home-hero-place {
+    max-width: 16ch;
+    justify-self: end;
+    text-align: right;
+  }
+
+  .home-hero-scroll {
+    justify-self: center;
+  }
+
+  .home-marquee {
+    margin-top: 0;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .u-marquee {
+    animation-duration: 14s;
+  }
 }
 
 /* ============================================================
@@ -268,5 +426,8 @@ h3 {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  .u-marquee {
+    transform: translateX(0);
   }
 }

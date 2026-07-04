@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <main className="overflow-x-clip">
       {/* ============ hero — a centered, quiet artifact cover ============ */}
-      <section className="relative overflow-hidden" style={{ minHeight: 'calc(100svh - 4rem)' }}>
+      <section className="home-hero-section relative overflow-hidden">
         <div
           aria-hidden="true"
           className="u-gridlines absolute inset-0 opacity-[0.32]"
@@ -49,47 +49,34 @@ export default function Home() {
           followCursor
           className="absolute inset-0 hidden md:block"
         />
+        <KoiDrift
+          count={1}
+          className="home-hero-koi-mobile absolute md:hidden"
+        />
 
-        <IntroAnimation className="relative flex min-h-[calc(100svh-4rem)] flex-col items-center justify-center px-6 text-center">
+        <IntroAnimation className="home-hero relative flex flex-col items-center justify-center px-6 text-center">
           {/* corner-pinned metadata — composed like the portfolio covers she pins */}
-          <p data-intro="pop" className="u-eyebrow absolute left-6 top-7 md:left-10">
+          <p data-intro="pop" className="home-hero-meta home-hero-meta-left u-eyebrow absolute left-6 top-7 md:left-10">
             {eyebrowLeft}
           </p>
-          <p data-intro="pop" className="u-eyebrow absolute right-6 top-7 text-right md:right-10">
+          <p data-intro="pop" className="home-hero-meta home-hero-meta-right u-eyebrow absolute right-6 top-7 text-right md:right-10">
             {eyebrowRight}
           </p>
-          {contact && (
-            <a
-              data-intro="pop"
-              href={contact.href}
-              target="_blank"
-              rel="noreferrer"
-              className="u-eyebrow absolute bottom-7 left-6 transition-colors hover:text-[color:var(--color-accent)] md:left-10"
-              style={{ transitionDuration: 'var(--motion-fast)' }}
-            >
-              {contact.label.toLowerCase()} ↗
-            </a>
-          )}
-          {place && (
-            <p data-intro="pop" className="u-eyebrow absolute bottom-7 right-6 text-right md:right-10">
-              ( {place} )
-            </p>
-          )}
 
           {typeof copy.heroRole === 'string' && (
-            <p data-intro="focus" className="u-eyebrow">
+            <p data-intro="focus" className="home-hero-role u-eyebrow">
               {copy.heroRole}
             </p>
           )}
 
-          <div data-intro="focus" className="mt-10">
+          <div data-intro="focus" className="home-hero-title-wrap mt-10">
             <FrameHandles cursors={cursors}>
               <h1
-                className="font-serif italic"
+                className="home-hero-name font-serif italic"
                 style={{
                   fontSize: 'var(--text-display)',
                   lineHeight: 0.92,
-                  letterSpacing: '-0.01em',
+                  letterSpacing: 0,
                   padding: '0.06em 0.18em 0.1em',
                 }}
               >
@@ -104,7 +91,7 @@ export default function Home() {
 
           <p
             data-intro="focus"
-            className="mt-10 font-serif italic"
+            className="home-hero-tagline mt-10 font-serif italic"
             style={{ fontSize: 'var(--text-h2)', color: 'var(--color-ink)' }}
           >
             {home.hero.tagline}
@@ -112,19 +99,36 @@ export default function Home() {
 
           <p
             data-intro="focus"
-            className="mt-5 max-w-[46ch]"
+            className="home-hero-intro mt-5 max-w-[46ch]"
             style={{ color: 'var(--color-muted)' }}
           >
             {home.hero.intro}
           </p>
 
-          <p
-            data-intro="pop"
-            className="u-eyebrow absolute bottom-7 left-1/2 -translate-x-1/2"
-            style={{ color: 'var(--color-muted)' }}
-          >
-            {copy.scrollCue}
-          </p>
+          <div data-intro="pop" className="home-hero-bottom">
+            {contact && (
+              <a
+                href={contact.href}
+                target="_blank"
+                rel="noreferrer"
+                className="home-hero-contact u-eyebrow transition-colors hover:text-[color:var(--color-accent)]"
+                style={{ transitionDuration: 'var(--motion-fast)' }}
+              >
+                {contact.label.toLowerCase()} ↗
+              </a>
+            )}
+            <p
+              className="home-hero-scroll u-eyebrow"
+              style={{ color: 'var(--color-muted)' }}
+            >
+              {copy.scrollCue}
+            </p>
+            {place && (
+              <p className="home-hero-place u-eyebrow text-right">
+                ( {place} )
+              </p>
+            )}
+          </div>
         </IntroAnimation>
       </section>
 
@@ -132,7 +136,7 @@ export default function Home() {
       {typeof copy.marquee === 'string' && copy.marquee && (
         <div
           aria-hidden="true"
-          className="mt-4 overflow-hidden py-5"
+          className="home-marquee mt-4 overflow-hidden py-5"
           style={{ borderTop: '1px solid var(--color-line)', borderBottom: '1px solid var(--color-line)' }}
         >
           <div className="u-marquee items-baseline gap-12 pr-12">

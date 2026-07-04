@@ -119,30 +119,31 @@ export function NavInner({ links }: { links: NavLink[] }) {
         {/* mobile trigger */}
         <button
           type="button"
-          className="font-mono text-[length:var(--text-meta)] lowercase tracking-[0.08em] text-[color:var(--color-ink)] md:hidden"
+          className="inline-flex min-h-11 min-w-11 items-center justify-center font-mono text-[length:var(--text-meta)] lowercase tracking-[0.08em] text-[color:var(--color-ink)] transition-[color,scale] active:scale-[0.96] md:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-nav-overlay"
           onClick={() => setMenuOpen((v) => !v)}
         >
-          {menuOpen ? '( close )' : 'menu'}
+          {menuOpen ? '( close )' : '( menu )'}
         </button>
       </nav>
 
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {menuOpen && (
           <motion.div
             id="mobile-nav-overlay"
             role="dialog"
             aria-modal="true"
-            className="fixed inset-0 z-50 flex flex-col items-start justify-center gap-6 bg-[color:var(--color-bg)] px-8 md:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex flex-col items-start justify-center gap-5 overflow-hidden bg-[color:var(--color-bg)] px-8 pb-12 pt-24 md:hidden"
+            initial={{ opacity: 0, y: reduceMotion ? 0 : -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: reduceMotion ? 0 : -12 }}
             transition={{ duration: reduceMotion ? 0 : 0.6, ease: EASE_DRIFT }}
           >
+            <div aria-hidden="true" className="u-gridlines absolute inset-0 opacity-[0.28]" />
             <button
               type="button"
-              className="absolute right-6 top-6 font-mono text-[length:var(--text-meta)] lowercase tracking-[0.08em] text-[color:var(--color-ink)]"
+              className="absolute right-6 top-5 z-10 inline-flex min-h-11 items-center justify-center font-mono text-[length:var(--text-meta)] lowercase tracking-[0.08em] text-[color:var(--color-ink)] transition-[color,scale] active:scale-[0.96]"
               onClick={() => setMenuOpen(false)}
             >
               ( close )
@@ -164,7 +165,7 @@ export function NavInner({ links }: { links: NavLink[] }) {
                   <Link
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className="font-serif text-[length:var(--text-h1)] italic"
+                    className="relative z-10 font-serif text-[length:var(--text-h1)] italic leading-none transition-[color,scale] active:scale-[0.96]"
                     style={{ color: active ? 'var(--color-accent)' : 'var(--color-ink)' }}
                   >
                     {link.label}
