@@ -67,6 +67,7 @@
   --font-sans: var(--font-gs);
   --font-mono: var(--font-frag);
   --font-script: var(--font-caveat);
+  --cursor-blossom: url('/cursor-blossom.png?v=flower-glyph') 16 16;
 }
 
 @theme inline {
@@ -81,16 +82,33 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: none;
+  cursor: var(--cursor-blossom), auto;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
 }
 
 body {
   background: var(--color-bg);
   color: var(--color-body);
+  cursor: var(--cursor-blossom), auto;
   font-family: var(--font-sans), system-ui, sans-serif;
   font-size: var(--text-body);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+a,
+button,
+input,
+textarea,
+select,
+[role='button'] {
+  cursor: var(--cursor-blossom), pointer;
 }
 
 /* the whole site sits on paper — one fixed grain pass over everything */

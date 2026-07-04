@@ -1,8 +1,14 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+import type { CSSProperties } from 'react';
+
 export interface KoiDriftProps {
   count?: 1 | 2 | 3;
   className?: string;
   /** 'ink' for dark grounds (footer) — cream-line koi */
   scheme?: 'paper' | 'ink';
+  followCursor?: boolean;
 }
 
 /*
@@ -80,9 +86,18 @@ const FISH = [
   { id: 'c', path: "path('M 150 210 C 190 180, 250 190, 260 230 C 270 268, 220 280, 180 268 C 144 258, 116 236, 150 210 Z')", size: 64, duration: '52s', delay: '-33s' },
 ] as const;
 
+const FOLLOW_DISTANCE = 58;
+const HOME_POINT = { x: 0.74, y: 0.3 };
+const ACTIVE_ZONE = { left: 0.3, right: 0.72, top: 0.2, bottom: 0.76 };
+const FISH_MARGIN = 52;
+
 /** Koi drifting on slow elliptical loops — her Vietnamese-heritage thread. */
-export default function KoiDrift({ count = 2, className, scheme = 'paper' }: KoiDriftProps) {
+export default function KoiDrift({ count = 2, className, scheme = 'paper', followCursor = false }: KoiDriftProps) {
   const fish = FISH.slice(0, count);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const pointerRef = useRef({ x: 0, y: 0, hasPointer: false });
+  const motionRef = useRef({ x: 0, y: 0, angle: 0, initialized: false });
+  const [leader, setLeader] = useState({ x: 0, y: 0, angle: 0, ready: false, active: false });
 
   const palettes =
     scheme === 'ink'
@@ -99,17 +114,140 @@ export default function KoiDrift({ count = 2, className, scheme = 'paper' }: Koi
           { body: 'var(--color-amber)', patch: 'var(--color-surface)', patch2: 'var(--color-terracotta)', outline: 'var(--color-oxblood)' },
         ];
 
+  useEffect(() => {
+    if (!followCursor) return undefined;
+
+    let frame = 0;
+
+    const seedPosition = () => {
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (!rect || motionRef.current.initialized) return;
+
+      motionRef.current = {
+        x: rect.width * HOME_POINT.x,
+        y: rect.height * HOME_POINT.y,
+        angle: 0.35,
+        initialized: true,
+      };
+      pointerRef.current = {
+        x: rect.width * HOME_POINT.x,
+        y: rect.height * HOME_POINT.y,
+        hasPointer: false,
+      };
+      setLeader({ ...motionRef.current, ready: true, active: false });
+    };
+
+    const handlePointerMove = (event: PointerEvent) => {
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (!rect) return;
+
+      const localX = event.clientX - rect.left;
+      const localY = event.clientY - rect.top;
+      const isInsideFollowZone =
+        localX >= rect.width * ACTIVE_ZONE.left &&
+        localX <= rect.width * ACTIVE_ZONE.right &&
+        localY >= rect.height * ACTIVE_ZONE.top &&
+        localY <= rect.height * ACTIVE_ZONE.bottom;
+
+      pointerRef.current = {
+        x: localX,
+        y: localY,
+        hasPointer: isInsideFollowZone,
+      };
+    };
+
+    const tick = () => {
+      seedPosition();
+
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (rect && motionRef.current.initialized) {
+        const pointer = pointerRef.current;
+        const current = motionRef.current;
+        const heroIsVisible = rect.bottom > 0 && rect.top < window.innerHeight;
+        const shouldFollow = pointer.hasPointer && heroIsVisible;
+        if (shouldFollow) {
+          const dx = pointer.x - current.x;
+          const dy = pointer.y - current.y;
+          const dist = Math.hypot(dx, dy);
+          const ux = dist > 0.001 ? dx / dist : Math.cos(current.angle);
+          const uy = dist > 0.001 ? dy / dist : Math.sin(current.angle);
+          const targetX = pointer.x - ux * FOLLOW_DISTANCE;
+          const targetY = pointer.y - uy * FOLLOW_DISTANCE;
+          const targetAngle = Math.atan2(dy, dx);
+          const turn = Math.atan2(Math.sin(targetAngle - current.angle), Math.cos(targetAngle - current.angle));
+
+          current.x += (targetX - current.x) * 0.065;
+          current.y += (targetY - current.y) * 0.065;
+          current.angle += turn * 0.09;
+        } else {
+          const now = performance.now();
+          let targetAngle = current.angle + Math.sin(now / 1500) * 0.018;
+
+          if (current.x < FISH_MARGIN) targetAngle = 0.08;
+          if (current.x > rect.width - FISH_MARGIN) targetAngle = Math.PI - 0.08;
+          if (current.y < FISH_MARGIN) targetAngle = Math.PI / 2;
+          if (current.y > rect.height - FISH_MARGIN) targetAngle = -Math.PI / 2;
+
+          const turn = Math.atan2(Math.sin(targetAngle - current.angle), Math.cos(targetAngle - current.angle));
+
+          current.angle += turn * 0.045;
+          current.x += Math.cos(current.angle) * 0.55;
+          current.y += Math.sin(current.angle) * 0.55;
+        }
+
+        current.x = Math.max(24, Math.min(current.x, rect.width - 24));
+        current.y = Math.max(24, Math.min(current.y, rect.height - 24));
+
+        setLeader({
+          x: current.x,
+          y: current.y,
+          angle: current.angle,
+          ready: true,
+          active: shouldFollow,
+        });
+      }
+
+      frame = window.requestAnimationFrame(tick);
+    };
+
+    seedPosition();
+    window.addEventListener('pointermove', handlePointerMove);
+    frame = window.requestAnimationFrame(tick);
+
+    return () => {
+      window.removeEventListener('pointermove', handlePointerMove);
+      window.cancelAnimationFrame(frame);
+    };
+  }, [followCursor]);
+
   // NOTE: no position class of its own — callers place it (usually `absolute`);
   // the fish inside anchor to this box via their offset paths.
   return (
-    <div aria-hidden="true" className={`pointer-events-none ${className ?? 'relative'}`}>
+    <div ref={containerRef} aria-hidden="true" className={`pointer-events-none ${className ?? 'relative'}`}>
       <style>{`
         @keyframes motif-koi-swim {
           0% { offset-distance: 0%; }
           100% { offset-distance: 100%; }
         }
       `}</style>
-      {fish.map((f, i) => (
+      {followCursor && fish[0] ? (
+        <div
+          style={
+            {
+              position: 'absolute',
+              top: leader.ready ? leader.y : '32%',
+              left: leader.ready ? leader.x : '68%',
+              opacity: leader.ready ? 1 : 0,
+              transform: `translate(-50%, -50%) rotate(${leader.angle}rad)`,
+              transformOrigin: 'center',
+              filter: 'drop-shadow(0 10px 18px rgba(23, 19, 16, 0.12))',
+              transition: 'opacity var(--motion-med) var(--ease-settle)',
+            } as CSSProperties
+          }
+        >
+          <Koi size={fish[0].size} {...palettes[0]} />
+        </div>
+      ) : fish.map((f, i) => (
         <div
           key={f.id}
           style={{

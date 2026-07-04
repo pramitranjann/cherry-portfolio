@@ -107,39 +107,44 @@ export function CaseStudyLayout({ study }: { study: CaseStudyContent }) {
     <article>
       {/* ============ hero ============ */}
       <header>
+        <div className="mx-auto max-w-6xl px-6 pb-5 pt-20 md:pt-24">
+          <nav aria-label="Breadcrumb" className="u-eyebrow flex items-center gap-2" style={{ color: 'var(--color-ink)' }}>
+            <Link href="/" className="opacity-60 transition-opacity hover:opacity-100">
+              home
+            </Link>
+            <span aria-hidden="true" style={{ opacity: 0.4 }}>
+              /
+            </span>
+            <Link href="/work" className="opacity-60 transition-opacity hover:opacity-100">
+              work
+            </Link>
+            <span aria-hidden="true" style={{ opacity: 0.4 }}>
+              /
+            </span>
+            <span aria-current="page" style={{ color: 'var(--color-ink)' }}>
+              {study.title.toLowerCase()}
+            </span>
+          </nav>
+        </div>
         <GradientField stops={gradientStops(study.accent)} grain className="relative overflow-hidden">
           {/* halftone florals drifting over the gradient — the Aurora-deck feel */}
           <HalftoneField
             variant="flower"
             tint="var(--color-surface)"
-            className="absolute -right-16 -top-16 w-80 opacity-25"
+            className="absolute -right-16 -top-16 z-0 w-72 opacity-[0.14]"
           />
           <HalftoneField
             variant="fade"
             tint="var(--color-surface)"
-            className="absolute -bottom-24 left-[12%] w-72 opacity-20"
+            className="absolute -bottom-20 left-[12%] z-0 w-64 opacity-[0.12]"
           />
-          <div className="relative mx-auto max-w-6xl px-6 pb-16 pt-20 md:pb-24 md:pt-28">
-            {/* breadcrumbs */}
-            <nav aria-label="Breadcrumb" className="u-eyebrow flex items-center gap-2" style={{ color: 'var(--color-ink)' }}>
-              <Link href="/" className="opacity-60 transition-opacity hover:opacity-100">
-                home
-              </Link>
-              <span aria-hidden="true" style={{ opacity: 0.4 }}>
-                /
-              </span>
-              <Link href="/work" className="opacity-60 transition-opacity hover:opacity-100">
-                work
-              </Link>
-              <span aria-hidden="true" style={{ opacity: 0.4 }}>
-                /
-              </span>
-              <span aria-current="page" style={{ color: 'var(--color-ink)' }}>
-                {study.title.toLowerCase()}
-              </span>
-            </nav>
-
-            <p className="u-eyebrow mt-6" style={{ color: 'var(--color-ink)', opacity: 0.75 }}>
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 z-[1]"
+            style={{ background: 'color-mix(in srgb, var(--color-surface) 66%, transparent)' }}
+          />
+          <div className="relative z-10 mx-auto max-w-6xl px-6 pb-12 pt-12 md:pb-16 md:pt-16">
+            <p className="u-eyebrow" style={{ color: 'var(--color-ink)', opacity: 0.75 }}>
               {study.type}
               {study.year ? ` · ${study.year}` : ''}
             </p>

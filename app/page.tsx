@@ -5,7 +5,6 @@ import { GsapReveal } from '@/components/GsapReveal';
 import { AnimatedEyebrow } from '@/components/AnimatedEyebrow';
 import { WorkIndex } from '@/components/WorkIndex';
 import FrameHandles from '@/components/motifs/FrameHandles';
-import RippleField from '@/components/motifs/RippleField';
 import KoiDrift from '@/components/motifs/KoiDrift';
 import AsciiArt from '@/components/motifs/AsciiArt';
 import StickerCard from '@/components/motifs/StickerCard';
@@ -13,10 +12,10 @@ import GradientField from '@/components/motifs/GradientField';
 
 const CURSOR_CORNERS = ['tl', 'tr', 'bl', 'br'] as const;
 const CURSOR_COLORS = [
-  'var(--color-accent-2)', // cobalt
-  'var(--color-accent)', // cherry red
-  'var(--color-amber)', // amber
-  'var(--color-lilac)', // lilac
+  '#2c46c7', // Cherry cobalt
+  '#d8351f', // Cherry red
+  '#e2679a', // Cherry pink
+  '#de9526', // Cherry amber
 ];
 
 export default function Home() {
@@ -34,19 +33,21 @@ export default function Home() {
   return (
     <main className="overflow-x-clip">
       {/* ============ hero — a centered, quiet artifact cover ============ */}
-      <section className="relative" style={{ minHeight: 'calc(100svh - 4rem)' }}>
-        {/* water rings, dead-centre behind the name */}
+      <section className="relative overflow-hidden" style={{ minHeight: 'calc(100svh - 4rem)' }}>
         <div
           aria-hidden="true"
-          className="absolute left-1/2 top-1/2 w-[125vmin] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-80"
-        >
-          <RippleField rings={8} drift className="w-full" />
-        </div>
+          className="u-gridlines absolute inset-0 opacity-[0.32]"
+          style={{
+            maskImage: 'radial-gradient(ellipse at center, black 0%, black 42%, transparent 78%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, black 0%, black 42%, transparent 78%)',
+          }}
+        />
 
-        {/* one koi, drifting slowly through the upper right of the rings */}
+        {/* one koi, drifting slowly through the upper right */}
         <KoiDrift
           count={1}
-          className="absolute left-[56%] top-[24%] hidden h-56 w-72 md:block"
+          followCursor
+          className="absolute inset-0 hidden md:block"
         />
 
         <IntroAnimation className="relative flex min-h-[calc(100svh-4rem)] flex-col items-center justify-center px-6 text-center">

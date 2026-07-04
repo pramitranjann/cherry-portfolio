@@ -1,5 +1,8 @@
 'use client';
 
+import { useCallback, useState } from 'react';
+import type { CSSProperties, PointerEvent as ReactPointerEvent } from 'react';
+import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import type { WorkProject } from '@/lib/site-content-schema';
 import { accentVar, gradientStops, motifForAccent } from '@/lib/motifs';
@@ -10,6 +13,10 @@ export interface ProjectCardProps {
   project: WorkProject;
   index: number;
 }
+
+const PREVIEW_WIDTH = 190;
+const PREVIEW_HEIGHT = 120;
+const PREVIEW_OFFSET = 44;
 
 function previewSrc(project: WorkProject): string | undefined {
   return project.cover ?? project.hoverImage ?? project.previewImages?.[0];
@@ -41,22 +48,56 @@ function PreviewTile({ project, className }: { project: WorkProject; className?:
 }
 
 /**
- * One editorial index row. The preview lives *inside* the row's right column —
- * it reveals in place on hover, so it can never drift away from its project.
+ * One editorial index row. The preview follows the pointer on hover while the
+ * row keeps its reserved year/arrow column stable.
  */
 export function ProjectCard({ project, index }: ProjectCardProps) {
+  const [preview, setPreview] = useState<{ x: number; y: number } | null>(null);
+
+  const updatePreview = useCallback((event: ReactPointerEvent<HTMLAnchorElement>) => {
+    if (event.pointerType === 'touch') return;
+
+    const maxX = window.innerWidth - PREVIEW_WIDTH - 12;
+    const maxY = window.innerHeight - PREVIEW_HEIGHT - 12;
+
+    setPreview({
+      x: Math.max(12, Math.min(event.clientX + PREVIEW_OFFSET, maxX)),
+      y: Math.max(12, Math.min(event.clientY + PREVIEW_OFFSET, maxY)),
+    });
+  }, []);
+
   return (
     <Link
       href={project.href}
       className="group -mx-4 block px-4 transition-colors hover:bg-[color-mix(in_srgb,var(--row-accent)_7%,transparent)] md:-mx-6 md:px-6"
+      onPointerEnter={updatePreview}
+      onPointerMove={updatePreview}
+      onPointerLeave={() => setPreview(null)}
       style={
         {
           borderTop: '1px solid var(--color-line)',
           transitionDuration: 'var(--motion-med)',
           '--row-accent': accentVar(project.accent),
-        } as React.CSSProperties
+        } as CSSProperties
       }
     >
+      {preview &&
+        createPortal(
+          <div
+            aria-hidden="true"
+            className="pointer-events-none fixed hidden h-[120px] w-[190px] overflow-hidden opacity-100 md:block"
+            style={{
+              left: preview.x,
+              top: preview.y,
+              zIndex: 2147483647,
+              boxShadow: '0 12px 34px rgba(23,19,16,0.16)',
+            }}
+          >
+            <PreviewTile project={project} />
+          </div>,
+          document.body,
+        )}
+
       {/* inline cover — small screens only */}
       <div className="pt-6 md:hidden">
         <div className="aspect-[16/9] w-full overflow-hidden">
@@ -91,26 +132,14 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
         </div>
 
-        {/* right column: reserved space; arrow at rest, preview tile on hover */}
-        <div className="relative hidden h-[132px] w-[210px] shrink-0 md:block">
-          {/* arrow, fades out on hover */}
+        {/* right column: reserved space; preview now tracks near the cursor */}
+        <div className="relative hidden h-[132px] w-[112px] shrink-0 md:block">
           <span
             aria-hidden="true"
-            className="absolute inset-0 flex items-center justify-end font-mono opacity-100 transition-opacity duration-300 group-hover:opacity-0"
-            style={{ color: 'var(--color-muted)' }}
+            className="absolute inset-0 flex items-center justify-end font-mono text-[color:var(--color-muted)] transition-colors duration-300 group-hover:text-[color:var(--row-accent)]"
           >
             {project.year ? `${project.year} →` : '→'}
           </span>
-          {/* preview tile, reveals in place */}
-          <div
-            className="absolute inset-0 origin-right opacity-0 [transform:scale(0.96)_translateX(10px)] transition-all duration-500 group-hover:opacity-100 group-hover:[transform:scale(1)_translateX(0)]"
-            style={{
-              transitionTimingFunction: 'var(--ease-settle)',
-              boxShadow: '0 10px 30px rgba(23,19,16,0.14)',
-            }}
-          >
-            <PreviewTile project={project} />
-          </div>
         </div>
       </div>
     </Link>

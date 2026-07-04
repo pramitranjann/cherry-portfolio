@@ -11,22 +11,13 @@ const EASE_DRIFT: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 function FlowerMark() {
   return (
-    <svg
-      width="12"
-      height="12"
-      viewBox="0 0 12 12"
-      fill="none"
+    <span
       aria-hidden="true"
-      className="ml-1 inline-block"
+      className="ml-1 inline-flex h-[1em] w-[1em] items-center justify-center font-sans not-italic leading-none text-[color:var(--color-accent)]"
+      style={{ fontSize: '0.78em' }}
     >
-      <g fill="var(--color-accent)">
-        <circle cx="6" cy="2.4" r="2" />
-        <circle cx="6" cy="9.6" r="2" />
-        <circle cx="2.4" cy="6" r="2" />
-        <circle cx="9.6" cy="6" r="2" />
-      </g>
-      <circle cx="6" cy="6" r="1.3" fill="var(--color-ink)" />
-    </svg>
+      ✿
+    </span>
   );
 }
 
