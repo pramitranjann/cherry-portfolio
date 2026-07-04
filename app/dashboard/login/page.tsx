@@ -31,7 +31,7 @@ export default async function DashboardLoginPage() {
           style={{
             background: 'var(--color-surface)',
             border: '1px solid var(--color-line)',
-            boxShadow: '0 1px 2px rgba(33,29,24,.08), 0 4px 12px rgba(33,29,24,.06)',
+            boxShadow: '0 1px 3px rgba(33,29,24,.08), 0 4px 12px rgba(33,29,24,.06)',
           }}
         >
           {HANDLE_POSITIONS.map((pos, i) => (
